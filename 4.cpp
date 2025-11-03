@@ -1,20 +1,24 @@
-﻿#include <iostream>
+#include <iostream>
+#include <string>
 
-int& at(int* niz, int i) {
-	return niz[i];  //vraca referencu na element niza
+using namespace std;
+
+string ric_u_piglatin(const string& word) {
+	string vowels = "aeiouAEIOU";
+	if (vowels.find(word[0]) != string::npos) {
+		return word + "hay";
+	}
+	else {
+		return word.substr(1) + word[0] + "ay";
+	}
 }
 
 int main() {
-	int niz[] = { 1, 2, 3, 4, 5 };
-	int i = 2;
+	string ric1 = "objektno";
+	string ric2 = "hellooo";
 
-	at(niz, i)++;  //uvecavamo 3. element (indeks 2) za 1
-
-	for (int j = 0; j < 5; j++) {
-		std::cout << niz[j] << " ";
-	}
+	cout << ric1 << " -> " << ric_u_piglatin(ric1) << endl;
+	cout << ric2 << " -> " << ric_u_piglatin(ric2) << endl;
 
 	return 0;
 }
-/*Funkcija at uzima pokazivač na niz (int* niz) i indeks (int i), te vraća referencu na element na tom indeksu.
-U funkciji main pozivamo at(niz, i)++, što povećava 3. element niza za 1.*/
