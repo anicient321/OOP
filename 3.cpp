@@ -1,29 +1,35 @@
-﻿/*#include <iostream>
+#include <iostream>
 #include <string>
-#include <cctype>
+#include <algorithm>
 
-int main() {
-	std::string s;
-	std::getline(std::cin, s);
+using namespace std;
 
-	for (char& c : s) { //petlja, svaki karakter stringa se dodjeljuje varijabli c (& znaci "referenca")
-		if (std::isdigit(c)) {
-			c = '*';
+void popravirazmake(string& text) {
+	//micimo visestruke razmake
+	text.erase(unique(text.begin(), text.end(), [](char a, char b) {
+		return a == ' ' && b == ' ';
+	}), text.end());
+
+	//makni razmake prije zareza pa tocke
+	size_t pos;
+	while ((pos = text.find(" ,")) != string::npos) text.erase(pos + 1, 1);
+	while ((pos = text.find(" .")) != string::npos) text.erase(pos + 1, 1);
+
+	//ako nema razmaka tu stvorit cemo ga
+	for (size_t i = 0; i < text.size(); ++i) {
+		if (text[i] == ',' && (i + 1 < text.size() && text[i + 1] != ' ')) {
+			text.insert(i + 1, " ");
 		}
-		else if (std::isspace(c)) {
-			c = '_';
-		}
-		else {
-			c = std::toupper(c);
+		if (text[i] == '.' && (i + 1 < text.size() && text[i + 1] != ' ')) {
+			text.insert(i + 1, " ");
 		}
 	}
+}
 
-	std::cout << s << std::endl;
-
+int main() {
+	string text = "puno   razmaka ,i tocka .";
+	cout << "prije: " << text << endl;
+	popravirazmake(text);
+	cout << "posli: " << text << endl;
 	return 0;
-}*/
-
-
-https://stackoverflow.com/questions/1452721/whats-the-problem-with-using-namespace-std
-https://en.cppreference.com/w/cpp/string/basic_string/getline.html
-https://stackoverflow.com/questions/17136315/entry-point-not-found
+}
