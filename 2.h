@@ -1,5 +1,5 @@
-#ifndef ZADATAK2_H
-#define ZADATAK2_H
+#ifndef 2_H
+#define 2_H
 
 #include <vector>
 #include <cmath>
