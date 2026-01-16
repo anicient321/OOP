@@ -1,0 +1,16 @@
+#ifndef UNIVERSITYCONSTANTS_H
+#define UNIVERSITYCONSTANTS_H
+
+#include <iostream>
+
+struct UniversityConstants {
+    static const int MAX_ECTS_PER_YEAR = 60;
+    static const int REQUIRED_ECTS_PER_YEAR = 45;
+    
+    static void print_university_rules() {
+        std::cout << "max ects: " << MAX_ECTS_PER_YEAR << std::endl;
+        std::cout << "potrebno ects: " << REQUIRED_ECTS_PER_YEAR << std::endl;
+    }
+};
+
+#endif
